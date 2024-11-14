@@ -1,0 +1,37 @@
+% Visualization of Student Data
+function visualizeData(studentDatabase)
+    % Extract GPA and Age data for plotting
+    gpas = [studentDatabase.Students.GPA];
+    ages = [studentDatabase.Students.Age];
+    majors = {studentDatabase.Students.Major};
+    
+    % GPA Distribution Histogram
+    figure;
+    histogram(gpas, 20);
+    title('GPA Distribution');
+    xlabel('GPA');
+    ylabel('Frequency');
+    
+    % Average GPA by Major
+    uniqueMajors = unique(majors);
+    avgGPAs = zeros(1, length(uniqueMajors));
+    
+    for i = 1:length(uniqueMajors)
+        majorStudents = studentDatabase.getStudentsByMajor(uniqueMajors{i});
+        avgGPAs(i) = mean([majorStudents.GPA]);
+    end
+    
+    figure;
+    bar(avgGPAs);
+    set(gca, 'XTickLabel', uniqueMajors);
+    title('Average GPA by Major');
+    xlabel('Major');
+    ylabel('Average GPA');
+    
+    % Age Distribution (Additional Plot)
+    figure;
+    histogram(ages, 10);
+    title('Age Distribution');
+    xlabel('Age');
+    ylabel('Frequency');
+end
