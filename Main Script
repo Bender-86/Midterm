@@ -1,0 +1,37 @@
+% Main Script for Student Database Management
+
+% Initialize the database
+studentDB = StudentDatabase();
+
+% Add sample students
+s1 = Student(1, 'John Doe', 20, 3.5, 'Computer Science');
+s2 = Student(2, 'Jane Smith', 22, 3.8, 'Biology');
+s3 = Student(3, 'Alice Brown', 21, 3.2, 'Computer Science');
+s4 = Student(4, 'Bob White', 23, 3.9, 'Mathematics');
+
+studentDB = studentDB.addStudent(s1);
+studentDB = studentDB.addStudent(s2);
+studentDB = studentDB.addStudent(s3);
+studentDB = studentDB.addStudent(s4);
+
+% Perform a search for a student by ID
+searchID = 2;
+student = studentDB.findStudentByID(searchID);
+if ~isempty(student)
+    student.displayInfo();
+end
+
+% Update GPA for a student
+s2 = studentDB.findStudentByID(2);
+if ~isempty(s2)
+    s2 = s2.updateGPA(3.7);
+end
+
+% Save the database to a file
+studentDB.saveDatabase('students.mat');
+
+% Load the database from a file
+studentDB = studentDB.loadDatabase('students.mat');
+
+% Generate Visualizations
+visualizeData(studentDB);
