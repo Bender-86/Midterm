@@ -1,9 +1,9 @@
 % Visualization of Student Data
 function visualizeData(studentDatabase)
     % Extract GPA and Age data for plotting
-    gpas = [studentDatabase.Students.GPA];
-    ages = [studentDatabase.Students.Age];
-    majors = {studentDatabase.Students.Major};
+    gpas = [studentDatabase.Students.Students_GPA];
+    ages = [studentDatabase.Students.Students_Age];
+    majors = {studentDatabase.Students.Students_Major};
     
     % GPA Distribution Histogram
     figure;
